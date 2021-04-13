@@ -1,0 +1,25 @@
+GOLANG CLEAN ARCHITECTURE
+
+- Infrastructure
+	- main.go
+- Application
+	- Interface Adapter
+- UseCase
+	- Service
+- Domain
+	- Struct Object
+
+----------DOMAIN------------
+
+- profile
+    - id
+    - name
+    - email
+    - phone number
+
+- project
+    - id
+    - profileId
+    - projectName
+    - Image
+    - Description
