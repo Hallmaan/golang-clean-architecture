@@ -28,7 +28,6 @@ func TestProfileValidate(t *testing.T){
 	}
 
 	domainProfile, _ := dProfile.NewProfile("Agung", "Agunghallmanmaliki@gmail.com", 0123)
-	print(domainProfile.Name)
 
 	tests := []TestCase{
 		{

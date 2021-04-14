@@ -35,3 +35,11 @@ func (p *Profile) Validate() error {
 	}
 	return nil
 }
+
+func (p *Profile) Update(name string, email string, number int) error {
+	p.Name = name
+	p.Email = email
+	p.PhoneNumber = number
+
+	return p.Validate()
+}
