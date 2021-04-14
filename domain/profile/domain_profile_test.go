@@ -9,14 +9,13 @@ import (
 )
 
 func TestNewProfile(t *testing.T){
-	input := profile_input.CreateProfileInput{"Agung", "Agunghallmanmaliki@gmail.com", 000}
+	input := profile_input.CreateProfileInput{"Agung", "Agunghallmanmaliki@gmail.com", 1}
 
 	profile, err := domain.NewProfile(input)
-	//profile, err := domain.NewProfile("Agung", "Agunghallmanmaliki@gmail.com", 0123)
 	assert.Nil(t, err)
 	assert.Equal(t, "Agung", profile.Name)
 	assert.Equal(t, "Agunghallmanmaliki@gmail.com", profile.Email)
-	assert.Equal(t, 0123, profile.PhoneNumber)
+	assert.Equal(t, 1, profile.PhoneNumber)
 }
 
 func TestProfileValidate(t *testing.T){
@@ -55,7 +54,8 @@ func TestProfileValidate(t *testing.T){
 	}
 
 	for _, data := range tests {
-		_, err := domain.NewProfile(data.Name, data.Email, data.PhoneNumber)
+		input := profile_input.CreateProfileInput{data.Name, data.Email, data.PhoneNumber}
+		_, err := domain.NewProfile(input)
 		assert.Equal(t, data.want, err)
 	}
 
