@@ -1,6 +1,9 @@
 package service_profile
 
-import domain "projectlist/domain/profile"
+import (
+	domain "projectlist/domain/profile"
+	profile_input "projectlist/usecase/profile/input"
+)
 
 type Service struct {
 	r Repository
@@ -14,8 +17,8 @@ func (s *Service) Get(id int) (*domain.Profile, error) {
 	return s.r.Get(id)
 }
 
-func (s *Service) Create(name string, email string, phoneNumber int) (*domain.Profile, error) {
-	profile, err := domain.NewProfile(name, email, phoneNumber)
+func (s *Service) Create(input profile_input.CreateProfileInput) (*domain.Profile, error) {
+	profile, err := domain.NewProfile(input)
 	if err != nil {
 		return profile, err
 	}

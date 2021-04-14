@@ -4,11 +4,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	errorDomain "projectlist/domain"
 	domain "projectlist/domain/profile"
+	profile_input "projectlist/usecase/profile/input"
 	"testing"
 )
 
 func TestNewProfile(t *testing.T){
-	profile, err := domain.NewProfile("Agung", "Agunghallmanmaliki@gmail.com", 0123)
+	input := profile_input.CreateProfileInput{"Agung", "Agunghallmanmaliki@gmail.com", 000}
+
+	profile, err := domain.NewProfile(input)
+	//profile, err := domain.NewProfile("Agung", "Agunghallmanmaliki@gmail.com", 0123)
 	assert.Nil(t, err)
 	assert.Equal(t, "Agung", profile.Name)
 	assert.Equal(t, "Agunghallmanmaliki@gmail.com", profile.Email)

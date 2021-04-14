@@ -1,9 +1,11 @@
 package profile_handler
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	helper "projectlist/application"
+	profile_formatter "projectlist/usecase/profile/formatter"
 	profile_input "projectlist/usecase/profile/input"
 	service_profile "projectlist/usecase/profile/service"
 )
@@ -31,5 +33,20 @@ func (p *profileHandler) CreateProfile(c *gin.Context) {
 		return
 	}
 
-	//newProfile, err := p.profileService.Create(input)
+	fmt.Println(input)
+
+	newProfile, err := p.profileService.Create(input)
+
+	if err != nil {
+		response := helper.ApiResponse("Add profile failed", http.StatusBadRequest, "Error", nil)
+
+		c.JSON(http.StatusBadRequest, response)
+		return
+	}
+
+	formatter := profile_formatter.FormatProfile(newProfile)
+
+	response := helper.ApiResponse("Profile has been added.", http.StatusOK, "Success", formatter)
+
+	c.JSON(http.StatusOK, response)
 }
